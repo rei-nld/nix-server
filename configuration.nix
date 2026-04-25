@@ -42,10 +42,7 @@
   
   home-manager.users.nixos = { pkgs, ... }: {
     programs.bash = {
-      bashrcExtra = ''
-        eval "$(ssh-agent -s)"
-        ssh-add ~/.ssh/id_github
-        '';
+      enable = true;
     };
     home.stateVersion = "25.11";
   };
