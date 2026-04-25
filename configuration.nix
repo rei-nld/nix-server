@@ -39,6 +39,16 @@
       git
     ];
   };
+  
+  home-manager.users.nixos = { pkgs, ... }: {
+    programs.bash = {
+      bashrcExtra = ''
+        eval "$(ssh-agent -s)"
+        ssh-add ~/.ssh/id_github
+        '';
+    };
+    home.stateVersion = "25.11";
+  };
 
   security.sudo = {
     extraRules = [{
