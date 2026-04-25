@@ -41,8 +41,12 @@
   };
   
   home-manager.users.nixos = { pkgs, ... }: {
+    services.ssh-agent.enable = true;
     programs.bash = {
       enable = true;
+      bashrcExtra = ''
+        ssh-add -l > /dev/null 2&>1 || ssh-add ~/.ssh/id_github
+        '';
     };
     home.stateVersion = "25.11";
   };
