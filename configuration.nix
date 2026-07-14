@@ -71,6 +71,7 @@
 
   virtualisation.docker = {
     enable = true;
+    package = pkgs.docker_29;
   };
 
   # This option defines the first version of NixOS you have installed on this particular machine,
