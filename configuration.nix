@@ -45,7 +45,7 @@
     programs.bash = {
       enable = true;
       bashrcExtra = ''
-        ssh-add -l > /dev/null 2&>1 || ssh-add ~/.ssh/id_github
+        ssh-add -l > /dev/null 2>&1 || ssh-add ~/.ssh/id_github
         '';
     };
     home.stateVersion = "25.11";
@@ -64,7 +64,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    # foot
+    #
   ];
 
   services.openssh.enable = true;
