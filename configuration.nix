@@ -35,9 +35,6 @@
   users.users.nixos = {
     isNormalUser = true;
     extraGroups = [ "wheel" "docker" ];
-    packages = with pkgs; [
-      git
-    ];
   };
   
   home-manager.users.nixos = { pkgs, ... }: {
@@ -46,8 +43,9 @@
       enable = true;
       bashrcExtra = ''
         ssh-add -l > /dev/null 2>&1 || ssh-add ~/.ssh/id_github
-        '';
+      '';
     };
+    programs.git.enable = true;
     home.stateVersion = "25.11";
   };
 
@@ -95,6 +93,4 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "25.11"; # Did you read the comment?
-
 }
-
