@@ -1,25 +1,20 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
-    };    # proxmox-nixos.url = "github:SaumonNet/proxmox-nixos";
+    };
   };
-  outputs = { self, nixpkgs, home-manager, ... }: {
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }: {
     nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem rec {
+      nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules = [ 
+        specialArgs = { inherit nixpkgs-unstable; };
+        modules = [
           ./configuration.nix
           home-manager.nixosModules.home-manager
-          
-          ({ pkgs, lib, ... }: {
-
-            nixpkgs.overlays = [
-
-            ];
-          })
         ];
       };
     };
