@@ -1,4 +1,7 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, nixpkgs-unstable, ... }:
+let
+  opencode-unstable = nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.opencode;
+in
 {
   users.users.nixos = {
     isNormalUser = true;
@@ -9,6 +12,10 @@
   };
   
   home-manager.users.nixos = { pkgs, ... }: {
+    programs.opencode = {
+      enable = true;
+      package = opencode-unstable;
+    };
     services.ssh-agent.enable = true;
     programs.bash = {
       enable = true;
