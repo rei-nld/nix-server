@@ -34,7 +34,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    opencode
+    #
   ];
 
   services.openssh.enable = true;

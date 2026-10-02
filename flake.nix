@@ -13,15 +13,11 @@
         modules = [ 
           ./configuration.nix
           home-manager.nixosModules.home-manager
-          # proxmox-nixos.nixosModules.proxmox-ve
           
           ({ pkgs, lib, ... }: {
-            # services.proxmox-ve = {
-              # enable = true;
-              # ipAddress = "192.168.0.250";
-            # };
+
             nixpkgs.overlays = [
-              # proxmox-nixos.overlays.${system}
+
             ];
           })
         ];
