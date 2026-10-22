@@ -28,8 +28,9 @@
     LC_TIME = "fr_FR.UTF-8";
   };
 
-  environment.systemPackages = [
-    #
+  environment.systemPackages = with pkgs; [
+    jdk
+    jre
   ];
 
   services.openssh.enable = true;
